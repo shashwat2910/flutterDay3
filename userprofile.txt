@@ -1,0 +1,38 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_application_2/controllers/authentication.dart';
+
+class UserProfile extends StatefulWidget {
+  @override
+  State<UserProfile> createState() => _UserProfileState();
+}
+
+class _UserProfileState extends State<UserProfile> {
+  FirebaseAuthentication firebaseAuthentication = FirebaseAuthentication();
+  // Scanner sc = new Scanner(System.in);
+  @override
+  void initState() {
+    firebaseAuthentication.uploadFile();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextButton(
+            onPressed: () async {
+              await firebaseAuthentication.uploadFile();
+            },
+            child: Container(
+              color: Colors.blueAccent,
+              width: MediaQuery.of(context).size.width / 5,
+              child: Text("Upload PDF"),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
